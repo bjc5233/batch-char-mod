@@ -14,7 +14,6 @@ Batch点阵字符输出
 ## 预览
 charMod.bat
 <div align=center><img src="https://github.com/bjc5233/batch-char-mod/raw/master/resources/demo.png"/></div>
-<div align=center><img src="https://github.com/bjc5233/batch-char-mod/raw/master/resources/demo2.png"/></div>
 
 ---
 charModDrop.bat
