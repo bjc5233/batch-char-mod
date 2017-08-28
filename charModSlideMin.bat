@@ -1,4 +1,4 @@
-@echo off& call load.bat _setFontSize
+@echo off& call lib\load.bat _setFontSize
 
 (%_call% ("6x12") %_setFontSize%)
 call sleep 15

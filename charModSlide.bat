@@ -1,4 +1,4 @@
-@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& setlocal enabledelayedexpansion& mode 140,30
+@echo off& call lib\load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& setlocal enabledelayedexpansion& mode 140,30
 (%_randomColor%)
 cd data
 ::从左到右效果
