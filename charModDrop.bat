@@ -1,6 +1,5 @@
-@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& setlocal enabledelayedexpansion& mode 140,30
-(%_randomColor%)
-cd data
+@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& call loadE.bat CurS fontSize& setlocal enabledelayedexpansion& mode 140,30
+(%_randomColor%)& %fontSize% 6 12& %CurS% /crv 0& cd data
 
 ::对全角使用16X16的点阵，对半角使用8X16的点阵
 ::showStyle:  0[正常]    1[上下颠倒]   2[左右颠倒]
@@ -9,15 +8,17 @@ if "%1" NEQ "" (
     for /l %%i in () do (
         for %%i in (%*) do (
             set zf=%%i
-            if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showDrop& timeout /t 8 >nul& cls
+            if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showDrop
         )    
     )
     goto :EOF
 ) else (
-    set zf=& set /p zf=输入字符:
-    if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showDrop& timeout /t 8>nul& cls
+    for /l %%1 in () do (
+        set zf=& set /p zf=输入字符:
+        if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showDrop
+    )
 )
-
+goto :EOF
 
 
 
@@ -62,8 +63,9 @@ for /l %%x in (16,-1,1) do (
                 set showStr=!showStr!!line%%z!!LF!
             )
         )
-        set showStr=!showStr:1=%QJ%!& echo !border!!LF!!showStr:0=%BJ%!!border!
-        sleep 100 >nul
+        set showStr=!showStr:1=%QJ%!& echo !LF!!LF!!border!!LF!!showStr:0=%BJ%!!border!
+        sleep 10 >nul
     )
 )
+pause>nul& cls
 goto :EOF

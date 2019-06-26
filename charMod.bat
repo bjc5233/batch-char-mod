@@ -1,14 +1,14 @@
-@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& setlocal enabledelayedexpansion& mode 140,30
-(%_randomColor%)
-cd data
+@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF _getRandomNum& call loadE.bat CurS fontSize& setlocal enabledelayedexpansion& mode 140,30
+(%_randomColor%)& %fontSize% 6 12& %CurS% /crv 0& cd data
 
 ::对全角使用16X16的点阵，对半角使用8X16的点阵
-::showStyle[0:正常, 1:上下颠倒, 2:左右颠倒]
+::showStyle[0:正常, 1:上下颠倒, 2:左右颠倒]     (%_call% ("0 2 showStyle") %_getRandomNum%)
 set QJ=█& set BJ=□& set showStyle=0
 if "%1" NEQ "" (
     for %%i in (%*) do (
         set zf=%%i
-        if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :show& pause>nul& cls
+        if "!zf!" NEQ "" set zf=!zf: =!
+        if "!zf!" NEQ "" (call :parse& call :show& pause>nul& cls)
     )
     goto :EOF
 ) else (

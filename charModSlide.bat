@@ -1,6 +1,5 @@
-@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& setlocal enabledelayedexpansion& mode 140,30
-(%_randomColor%)
-cd data
+@echo off& call load.bat _randomColor _reverseStr _strlen _strlen2 _getLF& call loadE.bat CurS fontSize& setlocal enabledelayedexpansion& mode 140,30
+(%_randomColor%)& %fontSize% 6 12& %CurS% /crv 0& cd data
 ::从左到右效果
 
 
@@ -11,15 +10,15 @@ if "%1" NEQ "" (
     for /l %%i in () do (
         for %%i in (%*) do (
             set zf=%%i
-            if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showSlideStyle2& timeout /t 8 >nul& cls
+            if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showSlideStyle2
         )    
     )
     goto :EOF
 ) else (
     set zf=& set /p zf=输入字符:
-    if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showSlideStyle2& timeout /t 8>nul& cls
+    if "!zf!" NEQ "" set zf=!zf: =!& if "!zf!" NEQ "" call :parse& call :showSlideStyle2
 )
-
+goto :EOF
 
 
 
@@ -52,8 +51,9 @@ for /l %%x in (0,1,%lineLenIndex%) do (
         set showStr=!showStr!!line%%y:~0,%%x!!LF!
     )
     set showStr=!showStr:1=%QJ%!& echo !border!!LF!!showStr:0=%BJ%!!border!
-    sleep 200
+    sleep 30 >nul
 )
+pause>nul& cls
 goto :EOF
 
 :showSlideStyle2
@@ -63,7 +63,8 @@ for /l %%x in (%lineLenIndex%,-1,0) do (
     for /l %%y in (1,1,16) do (
         set showStr=!showStr!!line%%y:~%%x!!LF!
     )
-    set showStr=!showStr:1=%QJ%!& echo !border!!LF!!showStr:0=%BJ%!!border!
-    sleep 200
+    set showStr=!showStr:1=%QJ%!& echo !LF!!LF!!border!!LF!!showStr:0=%BJ%!!border!
+    sleep 30 >nul
 )
+pause>nul& cls
 goto :EOF
